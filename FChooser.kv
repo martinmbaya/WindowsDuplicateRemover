@@ -1,0 +1,36 @@
+          
+Root:
+
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: 1
+            size_hint_x: 1
+            Button:
+                font_size: '30sp'
+                text: 'Click here to choose the folder to check duplicates in'
+                on_release: root.show_load()
+
+
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            dirselect: True
+            path: "F:"
+            path: "C:"
+            path: "E:"
+
+        BoxLayout:
+            size_hint_y: None
+            height: 40
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+
+            Button:
+                text: "Load"
+                on_release: root.load(filechooser.path, filechooser.selection)
